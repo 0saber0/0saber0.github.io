@@ -1,0 +1,120 @@
+---
+layout: default
+---
+<div class="row">
+  <div class="col-md-9">
+    {% for post in paginator.posts %}
+      <div class="well post">
+        <h3><a href="{{ post.url | prepend: site.baseurl }}" class="title">{{ post.title }}</a></h3>
+        <small>
+          <span class="item">
+            <i class="fa fa-calendar-check-o"></i> {{post.date | date: '%F'}}
+          </span>
+          {% if post.author %}
+            <span class="item">
+              <i class="fa fa-user"></i> {{post.author}}
+            </span>
+          {% endif %}
+          {% if post.categories %}
+            {% include categories.html %}
+          {% endif %}
+          {% if post.tags %}
+            {% include tags.html %}
+          {% endif %}
+        </small>
+        <hr>
+        <p>{{ post.excerpt }}</p>
+        <div class="text-center">
+          <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-default btn-raised">查看全文</a>
+        </div>
+      {% if forloop.last %}
+      <hr>
+      <div class="text-center paginate">
+        {% if paginator.previous_page %}
+          <a href="/"><i class="fa fa-angle-double-left"></i> </a>
+          <a href="{{ paginator.previous_page_path }}"><i class="fa fa-angle-left"></i> </a>
+        {% else %}
+          <span class="disable"><i class="fa fa-angle-double-left"></i> </span>
+          <span class="disable"><i class="fa fa-angle-left"></i> </span>
+        {% endif %}
+          <span>{{ paginator.page }} / {{ paginator.total_pages }} </span>
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path }}"><i class="fa fa-angle-right"></i> </a>
+          <a href="/page{{ paginator.total_pages }}"><i class="fa fa-angle-double-right"></i> </a>
+        {% else %}
+          <span class="disable"><i class="fa fa-angle-right"></i> </span>
+          <span class="disable"><i class="fa fa-angle-double-right"></i> </span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <div class="panel panel-well">
+      <div class="panel-heading">搜索</div>
+      <div class="panel-body">
+        {% include sidebar-search.html %}
+      </div>
+    </div>
+    <div class="panel panel-well">
+      <div class="panel-heading"><i class="fa fa-pencil-square-o"></i> 最近博客</div>
+      <table class="table">
+        {% for post in site.posts offset: 0 limit: 10 %}
+          <tr>
+            <td><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="panel panel-well">
+      <div class="panel-heading"><i class="fa fa-th-list"></i> 博客分类</div>
+      <table class="table">
+        {% for category in site.categories %}
+        <tr>
+          <td>
+            <a href="/category/#{{category | first}}">
+              {{category | first}}
+              <span class="badge badge-black">{{category | last | size}}</span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="panel panel-well">
+      <div class="panel-heading"><i class="fa fa-tags"></i> 博客标签</div>
+      <div class="panel-body tags">
+        {% assign first = site.tags.first %}
+        {% assign max = first[1].size %}
+        {% assign min = max %}
+        {% for tag in site.tags offset:1 %}
+          {% if tag[1].size > max %}
+            {% assign max = tag[1].size %}
+          {% elsif tag[1].size < min %}
+            {% assign min = tag[1].size %}
+          {% endif %}
+        {% endfor %}
+        {% assign diff = max | minus: min %}
+        {% for tag in site.tags %}
+          {% assign temp = tag[1].size | minus: min | times: 36 | divided_by: diff %}
+          {% assign base = temp | divided_by: 4 %}
+          {% assign remain = temp | modulo: 4 %}
+          {% if remain == 0 %}
+            {% assign size = base | plus: 10 %}
+          {% elsif remain == 1 or remain == 2 %}
+            {% assign size = base | plus: 10 | append: '.5' %}
+          {% else %}
+            {% assign size = base | plus: 11 %}
+          {% endif %}
+          {% if remain == 0 or remain == 1 %}
+            {% assign color = 9 | minus: base %}
+          {% else %}
+            {% assign color = 8 | minus: base %}
+          {% endif %}
+          <a href="/tag/#{{ tag | first | slugify }}" style="font-size: {{ size }}pt; color: #{{ color }}{{ color }}{{ color }};">{{ tag[0] }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
