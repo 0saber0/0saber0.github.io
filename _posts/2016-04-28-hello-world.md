@@ -3,7 +3,7 @@ layout: post
 title: Hello World
 date: 2016-04-28 15:24:44
 categories: hello-world
-tags: java
+tags: java hello
 author: 密拉诺
 ---
 
