@@ -15,7 +15,7 @@ permalink: /:year/:month/:day/:title/
 excerpt_separator: "\n\n\n\n"
 
 # 评论组件
-disqus_shortname: tomoya
+disqus_shortname: mi-la-nuo-de-bo-ke
 
 # statistic analysis 统计代码
 baidu_tongji_id: 
