@@ -3,7 +3,7 @@
 # 基本信息
 title: 密拉诺的博客
 email: 519888682@qq.com
-description: 喜欢编码，酷爱动漫
+description: 喜欢编码，动漫
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://0saber0.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 weibo_username: 
@@ -50,7 +50,7 @@ algolia:
 links:
   -
     name: YIIU
-    url: https://yiiu.co/
+    url: https://tomoya92.github.io/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
