@@ -15,9 +15,17 @@ author: 密拉诺
 ### 1.1 没有分隔符
 
 输入：           字符串
+
+
 输出：           去除重复字符并排序的字符串
+
+
 样例输入：       aabceeddf
+
+
 样例输出：       abcdef
+
+
 
 方法1：
 
@@ -162,9 +170,17 @@ public class Norepart3 {
 ## 2. 统计字符串中每个字符出现的次数
 
 输入：           字符串
+
+
 输出：           每个字符出现的次数
+
+
 样例输入：       aabceedd
+
+
 样例输出：       a=2,b=1,c=1,d=2,e=2
+
+
 
 ```java
 package com.milanuo;
