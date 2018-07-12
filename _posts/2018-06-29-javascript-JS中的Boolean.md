@@ -2,7 +2,7 @@
 layout: post
 title: JavaScript-JS中的Boolean
 date: 2018-06-29 14:34:24
-categories: hello-world
+categories: JavaScript
 tags: JavaScript boolean
 author: 密拉诺
 ---
